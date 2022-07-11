@@ -67,10 +67,9 @@ export default {
     initBricks() {
       let sizeOpt = [
         { columns: 2, gutter: 10 },
-        { mq: "600px", columns: 3, gutter: 10 },
-        { mq: "800px", columns: 4, gutter: 10 },
-        { mq: "1000px", columns: 5, gutter: 16 },
-        { mq: "1130px", columns: 5, gutter: 16 },
+        { mq: "1000px", columns: 3, gutter: 10 },
+        { mq: "1300px", columns: 4, gutter: 12 },
+        { mq: "1600px", columns: 5, gutter: 14 },
       ];
       this.hotCommentInst = Bricks({
         container: "#hot-comment-list",
@@ -84,7 +83,7 @@ export default {
       });
     },
     getData(limit = 50, offset) {
-      return Axios.get("https://musicapi.leanapp.cn/comment/music", {
+      return Axios.get("https://netease-cloud-music-api-omega-murex.vercel.app/comment/music", {
         withCredentials: true,
         params: {
           id: 186016,
