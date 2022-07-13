@@ -26,12 +26,11 @@ jobs:
       - name: build
         run: yarn && yarn build
       - name: git
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
-          cd dist
-          git config --global user.email "{{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "{{ github.actor }}"
-          git add -A
-          git commit -m "Deploy to GitHub Pages"
-          git push -f git@github.com:zlx01/qingtian.git main:gh-pages
+            cd dist
+            git config --global user.email "{{ github.actor }}@users.noreply.github.com"
+            git config --global user.name "{{ github.actor }}"
+            git remote add gh-pages "https://${{ secrets.ACCESS_TOKEN }}@github.com/qingtian.git"
+            git add -A
+            git commit -m "Deploy to GitHub Pages"
+            git push gh-pages master:gh-pages
