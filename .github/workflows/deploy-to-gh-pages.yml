@@ -23,8 +23,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: run deploy.sh
+      - name: build
+        run: yarn && yarn build
+      - name: git
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: git update-index --chmod=+x ./.github/scripts/deploy.sh && ./.github/scripts/deploy.sh
-
+        run: |
+          cd dist
+          git add -A
+          git commit -m "Deploy to GitHub Pages"
+          git push gh-pages master:gh-pages
