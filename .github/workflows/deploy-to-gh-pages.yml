@@ -33,5 +33,4 @@ jobs:
             git init
             git add -A
             git commit -m "Deploy to GitHub Pages"
-            git remote add gh-pages "https://${{ secrets.ACCESS_TOKEN }}@github.com/zlx01/qingtian.git"
             git push gh-pages master:gh-pages
