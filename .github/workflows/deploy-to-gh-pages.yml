@@ -25,10 +25,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: build
         run: yarn && yarn build
-      - name: change directory
-        run: cd dist
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3 # 使用第三方 Action 把构建完成的 Artifact 部署到指定分支
-        with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-          publish_branch: gh-pages
+      - name: git
+        run: |
+            cd dist
+            git init
+            git config user.name "${{GITHUB_ACTOR}}"
+            git config user.email "${{GITHUB_ACTOR}}@users.noreply.github.com"
+            git init
+            git add .
+            git commit -m "Deploy to GitHub Pages"
+            git push --force https://username:${{secrets.ACCESS_TOKEN}}@github.com/${{TARGET_REPO}}.git master:gh-pages
+            rm -fr .git
