@@ -26,5 +26,5 @@ jobs:
       - name: run deploy.sh
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: ./deploy.sh
+        run: git update-index --chmod=+x ./.github/scripts/deploy.sh && ./.github/scripts/deploy.sh
 
